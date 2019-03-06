@@ -19,12 +19,23 @@ def sum_of_ongoing_input():
     return rolling_sum
 
 
+def sum_of_list_input():
+    """
+    Takes a list of numbers as input from the user (separated by commas).
+    :return: The sum of the list.
+    """
+    user_list = input("Enter a list separated by commas (e.g. '1,2,3,4') ")
+    sum_of_list = sum(map(int, user_list.split(",")))
+    return sum_of_list
+
+
 def main():
     user_selection = input("Enter 0 if you want to insert numbers one by one, 1 if you want to insert a list: ")
     sum_of_numbers = 0
     if user_selection == "0":
         sum_of_numbers = sum_of_ongoing_input()
-    
+    elif user_selection == "1":
+        sum_of_numbers = sum_of_list_input()
     print(f"The sum of the numbers is {sum_of_numbers}")
 
 
