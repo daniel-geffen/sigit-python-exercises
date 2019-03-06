@@ -23,6 +23,35 @@ def authenticate_user():
     return True
 
 
+def take_menu_action_input(num_of_options):
+    """
+    Takes input from the user to determine his selection from menu options (every option has a number, starting at 0).
+    The input is forced to be one of the options.
+    :param num_of_options: The number of options in the menu.
+    :return: The selected option.
+    """
+    user_selection = input("Enter the number of the desired action: ")
+    while not user_selection.isnumeric() or not (num_of_options - 1 >= int(user_selection) >= 0):
+        user_selection = input("You didn't enter a valid action number. Please enter again: ")
+
+    return int(user_selection)
+
+
+def handle_menu():
+    """
+    Handles the main atm menu.
+    Displays the options, takes the users' input and calls the correct function.
+    """
+    menu_messages = ["Display balance", "Withdraw money", "Change password", "Exit program"]
+    menu_functions = []
+
+    print("-" * 30)
+    for i, message in enumerate(menu_messages):
+        print(f"{i} - {message}")
+
+    user_selection = take_menu_action_input(len(menu_functions))
+
+
 def main():
     """
     The main function of the module.
@@ -30,7 +59,7 @@ def main():
     """
     while True:
         if authenticate_user():
-            pass
+            handle_menu()
 
 
 if __name__ == "__main__":
