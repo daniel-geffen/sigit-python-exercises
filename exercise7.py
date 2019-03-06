@@ -23,3 +23,19 @@ def cache_decorator(func):
             return result
 
     return wrapper_func
+
+
+@cache_decorator
+def fibonacci(n):
+    """
+    A recursive function that calculates the nth element of the fibonacci series.
+    Because of the cache decorator, many of the recursive calls aren't called, so the function is very fast.
+    :param n: The index of the element requested.
+    :return: The value the element requested.
+    """
+
+    return n if n <= 1 else fibonacci(n - 1) + fibonacci(n - 2)
+
+
+if __name__ == '__main__':
+    print(fibonacci(100))  # Takes just 0.2 seconds with the decorator.
